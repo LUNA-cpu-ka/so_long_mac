@@ -1,33 +1,35 @@
-CC = cc
-SRC = chekcber.c
+GREEN='\033[0;32m'
+RED='\033[1;31m'
+BLUE='\033[0;34m'
+
+SRC = chekcber.c gnl/get_next_line_utils.c gnl/get_next_line.c 
 OBJS = $(SRC:.c=.o)
 CFLAGS = -Wall -Wextra -Werror
-
 NAME = so_long
 LIBFT = libft.a
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBFT)
-	@echo "Making $(NAME)....."
-	@cc $(OBJS) $(LIBFT) -o $(NAME)
+$(NAME): $(OBJS) 
+	@echo $(GREEN)"Making $(NAME)....."
+	@cc $(OBJS)  -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 %.o: %.c
-	@echo "so here youer files will compaling & the library"
-	@$(CC) $(CFLAGS) -c $< -o $@
-	$(CC) $(CFLAGS) -Imlx -c $< -o $@
-	@echo if you see me that has done
+	@cc $(CFLAGS) -Imlx -c $< -o $@
 
 $(LIBFT):
-	@echo "Making Libft"
-	@make -C libft
+	@echo $(GREEN)"Making Libft"
+	@make -C ./libft
 	@mv ./libft/libft.a .
 
 clean:
-	@rm -f $(OBJS) $(LIBFT)
+	@echo $(RED)"rm obj & lib 🚮"
+	@rm -f $(OBJS) 
 	@make -C ./libft clean
 
 fclean: clean
-	rm -f $(NAME)
+
+	@echo $(RED)"rm obj & lib & NAME 🚮"
+	@rm -f $(NAME)
 
 re: fclean all

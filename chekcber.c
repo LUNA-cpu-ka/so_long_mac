@@ -1,4 +1,6 @@
 #include "so_long.h"
+#include "gnl/get_next_line.h"
+
 
 int ft_check(char *str)
 {
@@ -6,8 +8,8 @@ int ft_check(char *str)
     int i;
     int j;
 
-    i = ft_strlen(str) - 1;
-    j = ft_strlen(arr) - 1;
+    i = strlen(str) - 1;
+    j = strlen(arr) - 1;
 
     while (j >= 0 && i >= 0)
     {
@@ -17,7 +19,7 @@ int ft_check(char *str)
         j--;    
     }
     if (j < 0)
-        printf(".ber exists\n");
+        printf("\n.ber exists\n");
     else
     {
         printf(".ber doesn't exist\n");
@@ -37,7 +39,7 @@ int ft_is_file(char *str)
         exit(1);
     }
     else
-        printf("Adam nadi\n");
+        printf("mojod l file\n");
     close(fd);
     return (0);
 }
@@ -45,7 +47,24 @@ int ft_is_file(char *str)
 int main(int ac, char **av)
 {
     (void )ac;
+    int fd;
 
+    if (ac > 2)
+    {
+       printf("error");
+       return(1);
+    }
+    fd = open(av[1], O_RDONLY);
+    char *line = get_next_line(fd);
+    char *map;
+    map = (char *)malloc(sizeof(char));
+    while (line)
+    {
+        map = ft_strjoin(map, line);
+        line = get_next_line(fd);
+    }
+    printf("%s", map);
+    printf("%s", av[1]);
     ft_check(av[1]);
     ft_is_file(av[1]);
 }
