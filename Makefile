@@ -1,8 +1,9 @@
-SRC = test.c error.c
-		
-OBJ = test.o error.o
+
+SRC = validation.c error.c
+
+OBJ = validation.o error.o
 GFLAGS = -Wall -Wextra -Werror 
-NAME = lo.a
+NAME = so_long.a
 
 
 all: $(NAME)

@@ -1,4 +1,5 @@
-#include "try.h"
+#include "so_long.h"
+
 void error(char* msg)
 {
     write(2, msg, strlen(msg));
