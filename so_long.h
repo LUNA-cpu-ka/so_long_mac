@@ -16,6 +16,6 @@ typedef struct try
 
 void error(char* msg);
 void validation_extantion(try *app, int ac, char **av);
-void validation_of_map(try *app);
+void validation_exist(try *app);
 
 #endif
